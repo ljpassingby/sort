@@ -1,8 +1,8 @@
 import java.util.Scanner;
 
 public class MyLinkedList<E> {
-    private Node head;
-    private Node last;
+    private Node head;  //维护头指针可以作为哨兵节点方便程序编写
+    private Node last;  //维护一个尾指针的目的是为了查找时使用折半查找,LinkedList源码也是通过这样进行折半查找
     private int size;
     public MyLinkedList() {
         clear();
@@ -28,7 +28,8 @@ public class MyLinkedList<E> {
         temp.next = previous.next;
         previous.next = temp;
         temp.previous = previous;
-        last.previous = temp;
+
+        last.previous = temp;   //如果有维护一个空尾指针，则加上这句
 
         ++size;
     }
@@ -69,6 +70,7 @@ public class MyLinkedList<E> {
         }
     }
 
+    //这个反转函数最简单，通过定义一个新链表
     public MyLinkedList<E> rotate() {
         MyLinkedList ml = new MyLinkedList();
         for (int i = size - 1; i >= 0; --i){
@@ -77,21 +79,27 @@ public class MyLinkedList<E> {
         return ml;
     }
 
+    //这个反转函数只需要提供一个头指针位置即可，直接在原链表上操作。同时适用于单链表，和有无哨兵节点没关系。
     public void rotate2(){
+        if (size < 1)
+             throw new RuntimeException();
         Node<E> previous = head;
         Node<E> temp = previous.next;
         Node<E> end;
+        previous.next = null;
         while (temp != null) {
             if (temp.next != null) {
                 end = temp.next;
                 temp.next = previous;
                 previous = temp;
                 temp = end;
-            }
-            temp.next = previous;
+            }else
+                break;
         }
+        temp.next = previous;
     }
 
+    //这个打印函数用于在链表调用rotate2函数后进行遍历链表用的
     public void print() {
         Node<E> temp = last.next;
         while (temp.next != null) {

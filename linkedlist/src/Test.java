@@ -10,7 +10,7 @@ public class Test {
         ml.add("def2");
         ml.add("def3");
         ml.rotate2();
-        ml.print();
+
     }
 }
 
