@@ -6,22 +6,26 @@
 3.选择排序时间复杂度，最好最坏与平均都是O(N2)
 */
 public class SelectSort {
-    public static void selectSort(int[] a, int n) {
+    public void selectSort(int[] a, int n) {
         if (n <= 1)
             return;
-        for (int i = 0; i < n; ++i) {
+        for (int i = 0; i < n - 1; ++i) {
+            boolean flag = false;
             int min = a[i];
             int index = i + 1;  //查找待排序序列中的最小值索引
             for (int j = i + 1; j < n; ++j) {
                 if (min > a[j]) {
                     index = j;
                     min = a[j];
+                    flag = true;
                 }
             }
-            //将最小值与已排列序列的末尾值a[i]交换
-            int temp = a[i];
-            a[i] = a[index];
-            a[index] = temp;
+            if (flag) {
+                //在保证找到最小值后，再将最小值与已排列序列的末尾值a[i]交换
+                int temp = a[i];
+                a[i] = a[index];
+                a[index] = temp;
+            }
         }
     }
 }

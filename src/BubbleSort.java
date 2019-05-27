@@ -5,7 +5,7 @@
 3.冒泡排序时间复杂度中，最好是O(N)，最坏是O(N2)，平均是O(N2)
 */
 public class BubbleSort {
-    public static void bubbleSort(int[] arr, int n) {
+    public void sort(int[] arr, int n) {
         if (n <= 1)
             return;
         //i用于限制循环次数，循环n-1次就行

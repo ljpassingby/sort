@@ -5,7 +5,7 @@
 3.插入排序的时间复杂度，最好是O(N)，最坏是O(N2)，平均是O(N2)
 */
 public class InsertSort {
-    public static void insertSort(int[] a, int n) {
+    public void sort(int[] a, int n) {
         if (n <= 1)
             return;
         for (int i = 1; i < n; ++i) {
