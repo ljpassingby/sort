@@ -1,8 +1,34 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class TestJVM {
     private static final int _1MB = 1024 * 1024;
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
+        new Thread(){
+            public void run() {
+                testOOM();
+            }
+        }.start();
+        while (true) {
+            System.out.println("main");
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            List<Object> list = new ArrayList<>();
+            while (true) {
+                Thread.sleep(1000);
+                list.add(new Object());
+            }
+        }
+    }
 
-        testTenuringThreshold();
+    public static void testOOM() {
+        List<Object> list = new ArrayList<>();
+        while (true) {
+            list.add(new Object());
+        }
     }
 
     public static void testTenuringThreshold() {

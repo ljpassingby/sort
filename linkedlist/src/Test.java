@@ -1,50 +1,33 @@
+import com.sun.org.apache.regexp.internal.RE;
+
+import java.io.File;
 import java.lang.reflect.Array;
 import java.util.*;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.locks.AbstractQueuedSynchronizer;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.*;
 
 public class Test {
-    public static void main(String [] args) throws Exception {
-        fillHeap(1000);
-        System.gc();
-    }
-
-
-    static class OOMObject{
-        public byte[] placeholder = new byte[64 * 1024];
-    }
-
-    public static void fillHeap(int num) throws Exception {
-        List<OOMObject> list = new ArrayList<>();
-        for (int i = 0; i < num; ++i) {
-            Thread.sleep(50);
-            list.add(new OOMObject());
-        }
-    }
 
     @org.junit.Test
     public void testClase() {
         TestClase testClase = new TestClase();
     }
 
+
     @org.junit.Test
     public void test() {
-        TreeSet ts = new TreeSet();
-        ts.add(3);
-        ts.add(2);
-        ts.add(7);
-        ts.add(6);
-        ts.add(5);
-        ts.add(8);
-        System.out.println(ts.pollLast());
+        int[] arr = {1,2,3};
+        int[] ar = {1,2,3};
+        System.out.println(arr.equals(ar));
+        System.out.println(Arrays.equals(arr, ar));
     }
 
 }
+
 class TestClase {
     int i = 1;
     {
@@ -55,6 +38,7 @@ class TestClase {
     TestClase() {
         print("构造函数");
     }
+
 
     public void print(String str) {
         System.out.println(str + (++i));
