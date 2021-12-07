@@ -3,6 +3,7 @@
 1.插入排序是原地排序，只涉及相邻数的常量级交换
 2.插入排序是稳定排序，因为相同值不交换
 3.插入排序的时间复杂度，最好是O(N)，最坏是O(N2)，平均是O(N2)
+4.以下例子排序结果为从小到大
 */
 public class InsertSort {
     public void sort(int[] a, int n) {
